@@ -6,8 +6,6 @@ import (
 )
 
 func main() {
-	const power = 2
-
 	var userHeight float64
 	var userWeight float64
 
@@ -17,8 +15,33 @@ func main() {
 	fmt.Print("Введите свой вес в кг:")
 	fmt.Scan(&userWeight)
 
-	IMT := userWeight / math.Pow(userHeight/100, power)
+	IMT := calculateBMI(userWeight, userHeight)
 
-	fmt.Printf("Ваш индекс: %.0f\n", IMT)
+	printBMI(IMT)
+}
 
+func printBMI(bmi float64) {
+	fmt.Printf("Ваш индекс массы тела: %.1f\n", bmi)
+	if bmi < 16 {
+		fmt.Println("Выраженный дефицит массы")
+	} else if bmi < 16.9 {
+		fmt.Println("Недостаток массы (умеренный)")
+	} else if bmi < 18.4 {
+		fmt.Println("Недостаток массы (легкий)")
+	} else if bmi < 25 {
+		fmt.Println("Норма (здоровый вес)")
+	} else if bmi < 30 {
+		fmt.Println("Избыточный вес")
+	} else if bmi < 35 {
+		fmt.Println("Ожирение I степени")
+	} else if bmi < 40 {
+		fmt.Println("Ожирение II степени")
+	} else {
+		fmt.Println("Ожирение III степени")
+	}
+}
+
+func calculateBMI(userWeight, userHeight float64) float64 {
+	const power = 2
+	return userWeight / math.Pow(userHeight/100, power)
 }
