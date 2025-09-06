@@ -1,6 +1,6 @@
 package main
 
-import "simple-cli/bmi"
+import "imt/bmi"
 
 func main() {
 	bmi.InitBMI()
